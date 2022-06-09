@@ -14,7 +14,10 @@ API_ROOT = 'http://fallacytron.embryo.fr'
 API_PATH = '/api/fallacy'
 TMP_IMAGE = 'tmp.png'
 
-client = discord.Client()
+intents = discord.Intents.default()
+intents.typing = False
+intents.presences = False
+client = discord.Client(intents=intents)
 
 
 @client.event
