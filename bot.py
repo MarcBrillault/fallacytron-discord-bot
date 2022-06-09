@@ -31,9 +31,8 @@ async def on_ready():
 async def on_message(message):
     if f'<@{client.user.id}>' in message.content:
         apiResponse = requests.get(API_ROOT + API_PATH).json()
-        data = json.loads(json.dumps(apiResponse))
 
-        imageResponse = requests.get(API_ROOT+data['image'])
+        imageResponse = requests.get(API_ROOT+apiResponse['image'])
         open(TMP_IMAGE, 'wb').write(imageResponse.content)
 
         file = discord.File(TMP_IMAGE)
