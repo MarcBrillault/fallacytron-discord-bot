@@ -32,7 +32,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    if client.user.mentioned_in(message):
+    if f'<@{client.user.id}>' in message.content:
         req = requests.get(API_ROOT + API_PATH)
         if req.status_code != 200:
             return
