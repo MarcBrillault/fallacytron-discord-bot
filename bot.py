@@ -1,11 +1,9 @@
 # bot.py
-from email.mime import image
 import os
 
 import discord
 from dotenv import load_dotenv
 import requests
-import json
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -33,7 +31,9 @@ async def on_ready():
 @client.event
 async def on_message(message):
     if f'<@{client.user.id}>' in message.content:
-        req = requests.get(API_ROOT + API_PATH + '?to=' + message.author.name)
+        req = requests.get(
+            API_ROOT + API_PATH + '?to=' + message.author.name
+        )
         if req.status_code != 200:
             return
 
