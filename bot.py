@@ -33,7 +33,7 @@ async def on_ready():
 @client.event
 async def on_message(message):
     if f'<@{client.user.id}>' in message.content:
-        req = requests.get(API_ROOT + API_PATH)
+        req = requests.get(API_ROOT + API_PATH + '?to=' + message.author.name)
         if req.status_code != 200:
             return
 
@@ -45,5 +45,10 @@ async def on_message(message):
         await message.channel.send(file=file)
 
         os.remove(TMP_IMAGE)
+
+        text = api_response['text']
+        print(
+            f'Response to {message.author.name}@{message.author.guild.name}: {text}'
+        )
 
 client.run(TOKEN)
