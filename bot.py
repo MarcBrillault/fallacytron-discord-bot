@@ -32,7 +32,7 @@ async def on_ready():
 async def on_message(message):
     if f'<@{client.user.id}>' in message.content:
         req = requests.get(
-            API_ROOT + API_PATH + '?to=' + message.author.name
+            API_ROOT + API_PATH + '?to=' + message.author.display_name
         )
         if req.status_code != 200:
             return
